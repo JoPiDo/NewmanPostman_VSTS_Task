@@ -104,8 +104,8 @@ describe('Normal behavior', function () {
         assert(runner.succeeded, 'Should be in success')
         assert(runner.stdOutContained('found 2 files'), '2 files are found');
         assert(runner.invokedToolCount == 2, 'should have call n two times. Actual:' + runner.invokedToolCount);
-        assert(runner.stdOutContained('n run /srcDir/collection1.json'), 'Should have used collection1.json');
-        assert(runner.stdOutContained('n run /srcDir/collection2.json'), 'Should have used collection2.json');
+        assert(runner.stdOutContained('n run ' + path.sep + 'srcDir' + path.sep + 'collection1.json'), 'Should have used collection1.json');
+        assert(runner.stdOutContained('n run ' + path.sep + 'srcDir' + path.sep + 'collection2.json'), 'Should have used collection2.json');
 
         done();
     })
@@ -116,7 +116,7 @@ describe('Normal behavior', function () {
         runner.run();
         // console.error(runner.stdout);
         assert(runner.succeeded, 'Should be in success')
-        assert(runner.stdOutContained('-e ' + path.normalize('/srcDir/environment.json')), 'environment file is added as arg');
+        assert(runner.stdOutContained('-e ' + path.normalize(path.sep + 'srcDir' + path.sep + 'environment.json')), 'environment file is added as arg');
         done();
     });
     it('URL can be set for collection', (done: MochaDone) => {
@@ -202,5 +202,4 @@ describe('Normal behavior', function () {
         done();
     })
 });
-
 
